@@ -78,6 +78,7 @@ int main()
 	    }
 	    else if(choice==2)
 	    {
+	    	
 	    	printf("Matriste kac tane sifirdan farkli eleman var(Sikistirilmis matristeki satir sayisi)?\n");
 	    	scanf("%d",&elmnt);
 	    	
@@ -99,47 +100,42 @@ int main()
 	    		if(i==0)
 				{
 					maxrow=matris[i][0];
+					maxcol=matris[i][1];
 					maxrow++;
+					maxcol++;
 					matris2=(int**)calloc(maxrow,sizeof(int*)*maxrow);
 					for(j=0;j<maxrow;j++)
                     {
-                     matris2[j]=(int*)realloc(matris2[j],maxcol*sizeof(int));
-                     if(matris[j]==NULL) printf("error space");
+                     matris2[j]=(int*)calloc(maxcol,maxcol*sizeof(int));
+                     if(matris2[j]==NULL) printf("error space");
 	            	 }
 				} 
 	    		
 	    		
 	    		if(i>0 && matris[i][0]+1>maxrow)
 				{
-					maxrow=matris[i][0];
-					maxrow++;
-					matris2=(int**)realloc(matris2,sizeof(int*)*(maxrow));
+					matris2=(int**)realloc(matris2,sizeof(int*)*(matris[i][0]+1));
+					for(k=maxrow;k<matris[i][0]+1;k++)
+					{
+						matris2[k]=(int*)calloc(maxcol,maxcol*sizeof(int));
+					}
+					maxrow=matris[i][0]+1;
+					
+					
 					for(j=0;j<maxrow;j++)
                     {
                      matris2[j]=(int*)realloc(matris2[j],maxcol*sizeof(int));
-                     if(matris[j]==NULL) printf("error space");
+                     if(matris2[j]==NULL) printf("error space");
 	            	 }
 				 }
-				 
-				 if(i==0)
-				 {
-				 	maxcol=matris[i][1];
-				 	maxcol++;
-				 	for(j=0;j<maxrow;j++)
-                    {
-                     matris2[j]=(int*)calloc(maxcol,maxcol*sizeof(int));
-                     if(matris[j]==NULL) printf("error space");
-	                 }
-				  } 
                  
 				 if(i>0 && matris[i][1]+1>maxcol)
 				 {
-				 	maxcol=matris[i][1];
-				 	maxcol++;
+				 	maxcol=matris[i][1]+1;
 				 	for(j=0;j<maxrow;j++)
                     {
                      matris2[j]=(int*)realloc(matris2[j],maxcol*sizeof(int));
-                     if(matris[j]==NULL) printf("error space");
+                     if(matris2[j]==NULL) printf("error space");
 	            	 }	
 					 			 	 
 				 }		
