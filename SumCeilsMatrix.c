@@ -70,7 +70,11 @@ int main(int argc, char *argv[])
 		printf("\n");
 	}
 	   
-
+                for(j=0;j<n+1;j++)
+                {
+                	free(a[j]);
+                }
+                free(a);
 	
 	return 0;
 }
